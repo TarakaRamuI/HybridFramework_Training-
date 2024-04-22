@@ -2,24 +2,24 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
     <line>
-      <![CDATA[Electronics      Electronics]]>
+      <![CDATA[Supplier-00000002670  Supplier-00000002670]]>
     </line>
     <line>
-      <![CDATA[Stock-000001126  Stock-000001126]]>
+      <![CDATA[Customer-00000004694  Customer-00000004694]]>
     </line>
   </reporter-output>
-  <suite started-at="2024-04-16T20:48:24 IST" name="Surefire suite" finished-at="2024-04-16T20:49:25 IST" duration-ms="60986">
+  <suite started-at="2024-04-21T15:37:14 IST" name="Surefire suite" finished-at="2024-04-21T15:38:03 IST" duration-ms="48107">
     <groups>
     </groups>
-    <test started-at="2024-04-16T20:48:24 IST" name="Surefire test" finished-at="2024-04-16T20:49:25 IST" duration-ms="60986">
+    <test started-at="2024-04-21T15:37:14 IST" name="Surefire test" finished-at="2024-04-21T15:38:03 IST" duration-ms="48107">
       <class name="driverFactory.AppTest">
-        <test-method signature="kickStart()[pri:0, instance:driverFactory.AppTest@2892dae4]" started-at="2024-04-16T20:48:24 IST" name="kickStart" finished-at="2024-04-16T20:49:25 IST" duration-ms="60909" status="PASS">
+        <test-method signature="kickStart()[pri:0, instance:driverFactory.AppTest@2892dae4]" started-at="2024-04-21T15:37:15 IST" name="kickStart" finished-at="2024-04-21T15:38:03 IST" duration-ms="48031" status="PASS">
           <reporter-output>
             <line>
-              <![CDATA[Electronics      Electronics]]>
+              <![CDATA[Supplier-00000002670  Supplier-00000002670]]>
             </line>
             <line>
-              <![CDATA[Stock-000001126  Stock-000001126]]>
+              <![CDATA[Customer-00000004694  Customer-00000004694]]>
             </line>
           </reporter-output>
         </test-method> <!-- kickStart -->

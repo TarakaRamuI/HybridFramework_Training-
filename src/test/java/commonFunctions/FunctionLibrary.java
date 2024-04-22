@@ -15,6 +15,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -42,6 +43,16 @@ public class FunctionLibrary {
 		else if(conpro.getProperty("Browser").equalsIgnoreCase("firefox"))
 		{
 			driver= new FirefoxDriver();
+			
+			driver.manage().window().maximize();
+		}
+		
+		else if(conpro.getProperty("Browser").equalsIgnoreCase("edge"))
+		{
+			driver = new EdgeDriver();
+			
+			driver.manage().window().maximize();
+			
 		}
 		else
 		{
@@ -255,34 +266,173 @@ public class FunctionLibrary {
 
 			//click search panel button
 			driver.findElement(By.xpath(conpro.getProperty("search-panel"))).click();
-		
-			//clear exiting text in search bar
-			driver.findElement(By.xpath(conpro.getProperty("search-textbox"))).clear();
-			
-			//enter the text onto search bar
-			driver.findElement(By.xpath(conpro.getProperty("search-textbox"))).sendKeys(Exp_Data);
-			
-			//click search button
-			driver.findElement(By.xpath("//button[@id='btnsubmit']")).click();
-			Thread.sleep(3000);
-			
-			String Act_Data = driver.findElement(By.xpath("//table[@class='table ewTable']/tbody/tr[1]/td[8]/div/span/span")).getText();
-			
-			Reporter.log(Act_Data+"  "+Exp_Data,true);
-			
-			try {
+
+		//clear exiting text in search bar
+		driver.findElement(By.xpath(conpro.getProperty("search-textbox"))).clear();
+
+		//enter the text onto search bar
+		driver.findElement(By.xpath(conpro.getProperty("search-textbox"))).sendKeys(Exp_Data);
+
+		//click search button
+		driver.findElement(By.xpath("//button[@id='btnsubmit']")).click();
+		Thread.sleep(3000);
+
+		String Act_Data = driver.findElement(By.xpath("//table[@class='table ewTable']/tbody/tr[1]/td[8]/div/span/span")).getText();
+
+		Reporter.log(Act_Data+"  "+Exp_Data,true);
+
+		try {
 			Assert.assertEquals(Exp_Data, Act_Data,"Stock Number Not Matching");
-			}
-			catch(AssertionError a)
-			{
-				Reporter.log(a.getMessage(),true);
-			}
-			
+		}
+		catch(AssertionError a)
+		{
+			Reporter.log(a.getMessage(),true);
+		}
+
+	}
+
+	//method for Supplier Number to Capture into note pad
+	public static void captureSupplier(String LocatorName, String LocatorValue) throws Throwable
+	{
+		String Suppliernumber = "";
+
+		if(LocatorName.equalsIgnoreCase("xpath"))
+		{
+			Suppliernumber = driver.findElement(By.xpath(LocatorValue)).getAttribute("value");
+		}
+
+		if(LocatorName.equalsIgnoreCase("id"))
+		{
+			Suppliernumber = driver.findElement(By.id(LocatorValue)).getAttribute("value");
+		}
+
+		if(LocatorName.equalsIgnoreCase("name"))
+		{
+			Suppliernumber = driver.findElement(By.name(LocatorValue)).getAttribute("value");
+		}
+
+		FileWriter fw = new FileWriter("./CaptureData/SupplierNumber.txt");
+
+		BufferedWriter bw = new BufferedWriter(fw);
+
+		bw.write(Suppliernumber);
+
+		bw.flush();
+
+		bw.close();
+	}
+
+	//Method for Supplier Table
+
+	public static void supplierTable() throws Throwable {
+
+		FileReader fr = new FileReader("./CaptureData/SupplierNumber.txt");
+
+		BufferedReader br = new BufferedReader(fr);
+
+		String Exp_Data = br.readLine();
+
+		//if search text box not displayed not displayed click search panel
+		if(!driver.findElement(By.xpath(conpro.getProperty("search-textbox"))).isDisplayed())
+
+			//click search panel button
+			driver.findElement(By.xpath(conpro.getProperty("search-panel"))).click();
+
+		//clear exiting text in search bar
+		driver.findElement(By.xpath(conpro.getProperty("search-textbox"))).clear();
+
+		//enter the text onto search bar
+		driver.findElement(By.xpath(conpro.getProperty("search-textbox"))).sendKeys(Exp_Data);
+
+		//click search button
+		driver.findElement(By.xpath("//button[@id='btnsubmit']")).click();
+		Thread.sleep(3000);
+
+		String Act_Data = driver.findElement(By.xpath("//table[@class= 'table ewTable']/tbody/tr[1]/td[6]/div/span/span")).getText();
+
+		Reporter.log(Act_Data+"  "+Exp_Data,true);
+		try {
+			Assert.assertEquals(Act_Data, Exp_Data,"Supplier is Not Matching");
+		}
+		catch(AssertionError e) {
+
+			Reporter.log(e.getMessage(),true);
+		}
 	}
 
 
+	//method for Customer Number to Capture into note pad
+	public static void captureCustomer(String LocatorName, String LocatorValue) throws Throwable
+	{
+		String Customernumber = "";
 
+		if(LocatorName.equalsIgnoreCase("xpath"))
+		{
+			Customernumber = driver.findElement(By.xpath(LocatorValue)).getAttribute("value");
+		}
+
+		if(LocatorName.equalsIgnoreCase("id"))
+		{
+			Customernumber = driver.findElement(By.id(LocatorValue)).getAttribute("value");
+		}
+
+		if(LocatorName.equalsIgnoreCase("name"))
+		{
+			Customernumber = driver.findElement(By.name(LocatorValue)).getAttribute("value");
+		}
+
+		FileWriter fw = new FileWriter("./CaptureData/CustomerNumber.txt");
+
+		BufferedWriter bw = new BufferedWriter(fw);
+
+		bw.write(Customernumber);
+
+		bw.flush();
+
+		bw.close();
+	}
+
+	//Method for Supplier Table
+
+	public static void CustomerTable() throws Throwable {
+
+		FileReader fr = new FileReader("./CaptureData/CustomerNumber.txt");
+
+		BufferedReader br = new BufferedReader(fr);
+
+		String Exp_Data = br.readLine();
+
+		//if search text box not displayed not displayed click search panel
+		if(!driver.findElement(By.xpath(conpro.getProperty("search-textbox"))).isDisplayed())
+
+			//click search panel button
+			driver.findElement(By.xpath(conpro.getProperty("search-panel"))).click();
+
+		//clear exiting text in search bar
+		driver.findElement(By.xpath(conpro.getProperty("search-textbox"))).clear();
+
+		//enter the text onto search bar
+		driver.findElement(By.xpath(conpro.getProperty("search-textbox"))).sendKeys(Exp_Data);
+
+		//click search button
+		driver.findElement(By.xpath("//button[@id='btnsubmit']")).click();
+		Thread.sleep(3000);
+
+		String Act_Data = driver.findElement(By.xpath("//table[@class= 'table ewTable']/tbody/tr[1]/td[5]/div/span/span")).getText();
+
+		Reporter.log(Act_Data+"  "+Exp_Data,true);
+		try {
+			Assert.assertEquals(Act_Data, Exp_Data,"Customer is Not Matching");
+		}
+		catch(AssertionError e) {
+
+			Reporter.log(e.getMessage(),true);
+		}
+	}
 }
+
+
+
 
 
 

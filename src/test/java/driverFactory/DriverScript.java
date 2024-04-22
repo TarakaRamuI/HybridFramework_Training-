@@ -126,6 +126,33 @@ public class DriverScript {
 							FunctionLibrary.stockTable();
 							logger.log(LogStatus.INFO, Description);
 						}
+						
+						if(Object_Type.equalsIgnoreCase("captureSupplier")) {
+							
+							FunctionLibrary.captureSupplier(LName, LValue);
+							logger.log(LogStatus.INFO, Description);
+						}
+						
+						if(Object_Type.equalsIgnoreCase("supplierTable")) {
+							
+							FunctionLibrary.supplierTable();
+							logger.log(LogStatus.INFO, Description);
+						}
+						
+						if(Object_Type.equalsIgnoreCase("captureCustomer")) {
+							
+							FunctionLibrary.captureCustomer(LName, LValue);
+							logger.log(LogStatus.INFO, Description);
+						}
+						
+						if(Object_Type.equalsIgnoreCase("CustomerTable")) {
+							
+							FunctionLibrary.CustomerTable();
+							logger.log(LogStatus.INFO, Description);
+						}
+						
+						
+						
 
 						//write as pass into TCModule sheet in status cell
 						xl.setCellData(TCModule, j, 5, "PASS", outputpath);

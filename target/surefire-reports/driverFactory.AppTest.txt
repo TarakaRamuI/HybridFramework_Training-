@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: driverFactory.AppTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 61.83 s -- in driverFactory.AppTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 49.03 s -- in driverFactory.AppTest
